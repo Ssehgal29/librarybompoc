@@ -36,8 +36,9 @@ android {
 }
 
 dependencies {
-    // lib-full consumed from JitPack, same as the per-library demo apps.
-    implementation("com.github.Ssehgal29.librarybompoc:lib-full:1.0.0")
+    // Firebase-style: import the BOM, then declare modules without versions.
+    implementation(platform("com.github.Ssehgal29.librarybompoc:lib-bom:1.0.2"))
+    implementation("com.github.Ssehgal29.librarybompoc:lib-full")
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)

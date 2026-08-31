@@ -13,6 +13,13 @@ plugins {
 val publishGroup = project.property("PUBLISH_GROUP") as String
 val publishVersion = project.property("PUBLISH_VERSION") as String
 
+// Publish the BOM as POM-only. JitPack rewrites group ids inside POMs but not inside
+// Gradle module metadata, so shipping the .module file would leave constraints pointing
+// at the un-rewritten group and consumers would resolve no versions from the BOM.
+tasks.withType<GenerateModuleMetadata> {
+    enabled = false
+}
+
 dependencies {
     constraints {
         api("$publishGroup:lib-1:$publishVersion")

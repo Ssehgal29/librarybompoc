@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="CHOOSE_PER_TEST" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/app-full" />
+            <option value="$PROJECT_DIR$/app-lib1" />
+            <option value="$PROJECT_DIR$/app-lib2" />
+            <option value="$PROJECT_DIR$/app-lib3" />
+            <option value="$PROJECT_DIR$/app-lib4" />
+            <option value="$PROJECT_DIR$/lib-1" />
+            <option value="$PROJECT_DIR$/lib-2" />
+            <option value="$PROJECT_DIR$/lib-3" />
+            <option value="$PROJECT_DIR$/lib-4" />
+            <option value="$PROJECT_DIR$/lib-full" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

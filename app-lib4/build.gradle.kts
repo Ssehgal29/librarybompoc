@@ -34,8 +34,9 @@ android {
 }
 
 dependencies {
-    // The library under test, consumed from JitPack (not a local project dependency).
-    implementation("com.github.Ssehgal29.librarybompoc:lib-4:1.0.0")
+    // Firebase-style: import the BOM, then declare modules without versions.
+    implementation(platform("com.github.Ssehgal29.librarybompoc:lib-bom:1.0.2"))
+    implementation("com.github.Ssehgal29.librarybompoc:lib-4")
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)

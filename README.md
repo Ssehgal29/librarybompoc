@@ -13,6 +13,7 @@ POC for publishing multiple Android library modules to [JitPack](https://jitpack
 | `lib-3` | `PulseLoader` | Orange animated pulsing loader |
 | `lib-4` | `RatingStars` | Purple tappable 5-star rating bar |
 | `lib-full` | `FullShowcase` | Aggregates all four libs (`api` dependencies) and shows every widget |
+| `lib-bom` | — (no code) | Bill of Materials: pins the versions of all modules above |
 
 The main `app` module is the lib-full demo: it renders `FullShowcase` and consumes `lib-full` **from JitPack**, same as the per-library demo apps. All screens and widgets have `@Preview` composables.
 
@@ -49,14 +50,15 @@ dependencyResolutionManagement {
 }
 ```
 
-Then depend on individual modules:
+Then, Firebase-style: import the BOM once and pick modules without versions —
 
 ```kotlin
 dependencies {
-    implementation("com.github.Ssehgal29.librarybompoc:lib-1:<tag>")
-    implementation("com.github.Ssehgal29.librarybompoc:lib-2:<tag>")
-    implementation("com.github.Ssehgal29.librarybompoc:lib-3:<tag>")
-    implementation("com.github.Ssehgal29.librarybompoc:lib-4:<tag>")
+    implementation(platform("com.github.Ssehgal29.librarybompoc:lib-bom:<tag>"))
+
+    // pick only what you need — versions come from the BOM
+    implementation("com.github.Ssehgal29.librarybompoc:lib-1")
+    implementation("com.github.Ssehgal29.librarybompoc:lib-3")
 }
 ```
 
@@ -64,9 +66,12 @@ dependencies {
 
 ```kotlin
 dependencies {
-    implementation("com.github.Ssehgal29.librarybompoc:lib-full:<tag>")
+    implementation(platform("com.github.Ssehgal29.librarybompoc:lib-bom:<tag>"))
+    implementation("com.github.Ssehgal29.librarybompoc:lib-full")
 }
 ```
+
+Explicit versions still work without the BOM (`implementation("com.github.Ssehgal29.librarybompoc:lib-1:<tag>")`), but the BOM keeps all modules in lockstep with a single version declaration — the same pattern Firebase uses (`firebase-bom` + versionless `firebase-analytics`, `firebase-auth`, …).
 
 `<tag>` is a git tag (e.g. `1.0.0`), a branch snapshot (`main-SNAPSHOT`), or a commit hash.
 
