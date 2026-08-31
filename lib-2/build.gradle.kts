@@ -39,9 +39,9 @@ dependencies {
 publishing {
     publications {
         register<MavenPublication>("release") {
-            groupId = "com.github.Ssehgal29"
+            groupId = project.property("PUBLISH_GROUP") as String
             artifactId = "lib-2"
-            version = "1.0.0"
+            version = project.property("PUBLISH_VERSION") as String
             afterEvaluate {
                 from(components["release"])
             }
