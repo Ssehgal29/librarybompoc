@@ -37,7 +37,7 @@ android {
 
 dependencies {
     // Firebase-style: import the BOM, then declare modules without versions.
-    implementation(platform("com.github.Ssehgal29.librarybompoc:lib-bom:1.0.2"))
+    implementation(platform("com.github.Ssehgal29.librarybompoc:lib-bom:1.0.3"))
     implementation("com.github.Ssehgal29.librarybompoc:lib-full")
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)

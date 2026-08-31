@@ -20,13 +20,18 @@ tasks.withType<GenerateModuleMetadata> {
     enabled = false
 }
 
+// JitPack rewrites the BOM's own coordinates to com.github.<user>.<repo> but leaves the
+// <dependencyManagement> section of the POM untouched, so the constraints must be written
+// with the final JitPack group up front.
+val bomConstraintGroup = "$publishGroup.librarybompoc"
+
 dependencies {
     constraints {
-        api("$publishGroup:lib-1:$publishVersion")
-        api("$publishGroup:lib-2:$publishVersion")
-        api("$publishGroup:lib-3:$publishVersion")
-        api("$publishGroup:lib-4:$publishVersion")
-        api("$publishGroup:lib-full:$publishVersion")
+        api("$bomConstraintGroup:lib-1:$publishVersion")
+        api("$bomConstraintGroup:lib-2:$publishVersion")
+        api("$bomConstraintGroup:lib-3:$publishVersion")
+        api("$bomConstraintGroup:lib-4:$publishVersion")
+        api("$bomConstraintGroup:lib-full:$publishVersion")
     }
 }
 
