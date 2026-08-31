@@ -1,0 +1,4 @@
+jdk:
+  - openjdk21
+install:
+  - ./gradlew :lib-1:publishToMavenLocal :lib-2:publishToMavenLocal :lib-3:publishToMavenLocal :lib-4:publishToMavenLocal :lib-full:publishToMavenLocal
