@@ -19,6 +19,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven("https://jitpack.io")
     }
 }
 
@@ -29,3 +30,8 @@ include(":lib-2")
 include(":lib-3")
 include(":lib-4")
 include(":lib-full")
+include(":app-lib1")
+include(":app-lib2")
+include(":app-lib3")
+include(":app-lib4")
+include(":app-full")
