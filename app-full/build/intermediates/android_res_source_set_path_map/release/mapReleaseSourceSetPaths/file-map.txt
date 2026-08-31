@@ -1,0 +1,9 @@
+com.sign3.demo.full.app-full-pngs-0 /Users/sahil-sign3/AndroidStudioProjects/librarybompoc/app-full/build/generated/res/pngs/release
+com.sign3.demo.full.app-full-updated_navigation_xml-1 /Users/sahil-sign3/AndroidStudioProjects/librarybompoc/app-full/build/generated/updated_navigation_xml/release
+com.sign3.demo.full.app-full-packageReleaseResources-2 /Users/sahil-sign3/AndroidStudioProjects/librarybompoc/app-full/build/intermediates/incremental/release/packageReleaseResources/merged.dir
+com.sign3.demo.full.app-full-packageReleaseResources-3 /Users/sahil-sign3/AndroidStudioProjects/librarybompoc/app-full/build/intermediates/incremental/release/packageReleaseResources/stripped.dir
+com.sign3.demo.full.app-full-merged-not-compiled-resources-4 /Users/sahil-sign3/AndroidStudioProjects/librarybompoc/app-full/build/intermediates/merged-not-compiled-resources/release
+com.sign3.demo.full.app-full-release-5 /Users/sahil-sign3/AndroidStudioProjects/librarybompoc/app-full/build/intermediates/merged_res/release/mergeReleaseResources
+com.sign3.demo.full.app-full-main-6 /Users/sahil-sign3/AndroidStudioProjects/librarybompoc/app-full/src/main/res
+com.sign3.demo.full.app-full-release-7 /Users/sahil-sign3/AndroidStudioProjects/librarybompoc/app-full/src/release/res
+gradleHome-0 /Users/sahil-sign3/.gradle

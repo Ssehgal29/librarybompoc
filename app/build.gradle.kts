@@ -22,7 +22,7 @@ android {
     buildTypes {
         release {
             optimization {
-                enable = false
+                enable = true
             }
         }
     }
@@ -36,7 +36,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":lib-full"))
+    // lib-full consumed from JitPack, same as the per-library demo apps.
+    implementation("com.github.Ssehgal29.librarybompoc:lib-full:1.0.0")
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
