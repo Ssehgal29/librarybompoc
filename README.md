@@ -21,19 +21,29 @@ The main `app` module is the lib-full demo: it renders `FullShowcase` and consum
 
 Five apps each integrate exactly one library **from JitPack** (`com.github.Ssehgal29.librarybompoc:<module>:1.0.0`) and render its widget. Release APKs, unsigned, R8 enabled:
 
-| App | Library | APK (R8 enabled) | APK (no R8) |
+All apps import the BOM and pick modules without versions. Release APKs, unsigned, R8 enabled (deltas vs the smallest app, `app-lib1`):
+
+| App | Libraries | APK size | Δ vs lib-1 |
 |---|---|---|---|
-| `app-lib1` | lib-1 (GreetingCard) | 766,493 B (0.73 MB) | 7,887,436 B (7.5 MB) |
-| `app-lib2` | lib-2 (CounterChip) | 815,645 B (0.77 MB) | 7,887,436 B (7.5 MB) |
-| `app-lib3` | lib-3 (PulseLoader) | 766,493 B (0.73 MB) | 7,887,436 B (7.5 MB) |
-| `app-lib4` | lib-4 (RatingStars) | 799,261 B (0.76 MB) | 7,887,436 B (7.5 MB) |
-| `app` | lib-full (all four) | 954,091 B (0.90 MB) | 7,887,436 B (7.5 MB) |
+| `app-lib1` | lib-1 | 766,493 B (0.73 MB) | — |
+| `app-lib3` | lib-3 | 766,493 B (0.73 MB) | +0 B |
+| `app-lib13` | lib-1 + lib-3 | 782,881 B (0.74 MB) | +16 KB |
+| `app-lib4` | lib-4 | 799,261 B (0.76 MB) | +32 KB |
+| `app-lib34` | lib-3 + lib-4 | 799,265 B (0.76 MB) | +32 KB |
+| `app-lib2` | lib-2 | 815,645 B (0.77 MB) | +48 KB |
+| `app-lib12` | lib-1 + lib-2 | 815,649 B (0.77 MB) | +48 KB |
+| `app-lib123` | lib-1 + lib-2 + lib-3 | 832,033 B (0.79 MB) | +64 KB |
+| `app-lib1234` | lib-1..4 individually | 881,185 B (0.84 MB) | +112 KB |
+| `app` | lib-full (all four) | 954,091 B (0.90 MB) | +183 KB |
+
+Without R8, every one of these APKs is byte-for-byte identical (7,887,436 B) — the shared transitive Compose stack dwarfs the widgets.
 
 Takeaways:
 
-- **Without R8/minification the APKs are byte-for-byte identical** — every lib pulls the same transitive Compose stack (material3/ui/foundation), which dwarfs the few-KB widgets.
-- **With R8 the size tracks actual usage**: lib-full costs more than a single lib, since it keeps all four widgets and their code paths (buttons, animation, clickable, etc.).
-- `app` is not a perfectly minimal baseline like `app-lib*`: it also ships launcher icons, a custom Material theme, and edge-to-edge setup (~70 KB of the difference). A minimal lib-full app measured 881,185 B (0.84 MB).
+- **Size is driven by which Compose code paths R8 must keep, not by module count**: lib-2 (Material buttons) costs ~48 KB, lib-4 (clickable + saveable state) ~32 KB, while lib-1 and lib-3 (passive card / canvas animation) add nothing beyond the shared baseline.
+- **Combinations are almost free**: adding lib-1 to lib-2 (`app-lib12`) costs 4 bytes over lib-2 alone — the marginal cost of a lib is only whatever code paths it uniquely uses.
+- **`app-lib1234` (four individual libs) == the minimal lib-full app == 881,185 B**: depending on lib-full or on all four modules yields identical bits, so granular modules only save size when you *don't* need everything.
+- `app` is bigger than `app-lib1234` only because it also ships launcher icons, a custom Material theme, and edge-to-edge setup (~70 KB).
 - Reproduce with `./gradlew :app:assembleRelease :app-lib1:assembleRelease ...` and check `*/build/outputs/apk/release/`.
 
 ## Usage
